@@ -20,6 +20,26 @@ public class Chapter2{
 
     }
 
+    /**Problem 2.7
+     * Given two (singly) linked lists, determine if the two lists intersect. 
+     * Return the inter­ secting node. Note that the intersection is de ned based on reference, not value.
+     * That is, if the kth node of the  rst linked list is the exact same node (by reference) 
+     * as the jth node of the second linked list, then they are intersecting.
+     */
+    public Node intersaction(LinkedList link0, LinkedList link1){
+
+        for(Node n0 = link0.head; n0 != null; n0 = n0.next){
+            for(Node n1 = link1.head; n1 != null; n1 = n1.next){
+                
+                //comparing reference
+                if(n0 == n1)
+                    return n0;
+            }
+        }
+
+        return null;
+    }
+
       
 }
 class LinkedList{
