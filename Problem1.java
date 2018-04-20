@@ -9,7 +9,7 @@ public class Problem1{
         System.out.println(isUnique("Eddie"));
 
         //Problem 1.2
-        System.out.println(checkPermutation("Eddie", "eidde"));
+        System.out.println("Problem 1.2: "+checkPermutation("Eddie", "eidde"));
 
         //Problem 1.3
         URLi("Mr John Smith ", 13);
@@ -41,7 +41,39 @@ public class Problem1{
         return true;    
     }
 
-    
+    /**Problem 1.2
+     * Check Permutation: Given two strings,write a method to decide if one is a permutation of the other.
+     * O(n)
+     */
+    public static boolean checkPermutation(String word0, String word1){
+
+        //theyhave to be the same size.
+        if(word0.length() != word1.length())
+            return false;  
+        word0 = word0.toUpperCase(); 
+        word1 = word1.toUpperCase();
+        boolean sameChar = false;
+
+        char[] a0 = word0.toCharArray();
+        char[] a1 = word1.toCharArray();    
+        Hashtable<Character, Integer> table = new Hashtable<>(word0.length());
+        
+        for (char var : a0) {
+            int value = table.getOrDefault(var, 0);
+            value++;
+            table.put(var,value);
+        }
+        for (char var : a1) {
+            int value = table.getOrDefault(var, 0);
+            value--;
+        }
+        for (int var : table.values()) {
+            if(var != 0)
+                return false;
+        }
+
+        return true;
+    }
     /**
      * Problem 1.3
      * Write a method to replace all spaces in a string with '%20  You may assume that the string has suf cient space at the end to hold the additional characters,and that you are given the "true" length of the string. (Note: If implementing in Java,please use a character array so that you can perform this operation in place.)
@@ -98,5 +130,4 @@ public class Problem1{
                     return false;
         return true;
     }
-
 }
