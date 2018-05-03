@@ -1,20 +1,22 @@
+import java.util.ArrayList;
 import java.util.Deque;
 import java.util.EmptyStackException;
 import java.util.Iterator;
 import java.util.PriorityQueue;
 import java.util.Queue;
 
+
 public class Chapter3{
 
-    Queue shelterQueue;
     
-    public void main(String[]args){
+    
+    public static void main(String[]args){
 
-        shelterQueue = new PriorityQueue<Animal>();
+        Queue shelterQueue = new PriorityQueue<Animal>();
         
-        shelterQueue.add("dog");
-        shelterQueue.add("cat");
-        shelterQueue.add("cat");
+        shelterQueue.add(new Animal("cat"));
+        shelterQueue.add(new Animal("dog"));
+        shelterQueue.add(new Animal("cat"));
 
         System.out.println(dequeueCat().animalType);
 
@@ -36,12 +38,12 @@ public class Chapter3{
      *  They cannot select which speci c animal they would like. Create the data structures to maintain this system and implement operations such as enqueue, dequeueAny, dequeueDog, and dequeueCat.
      *  You may use the built-in Linked list data structure.
      */
-    public Animal dequeueDog(){
+    public static Animal dequeueDog(){
         Queue sQueue = new PriorityQueue<>();
-        Animal dogAdopted;
+        Animal dogAdopted = null;
         while(!(shelterQueue.isEmpty())){
             if(dogAdopted == null && dogAdopted.animalType == "dog")
-                dogAdopted = shelterQueue.poll();
+                dogAdopted = (Animal) shelterQueue.poll();
             sQueue.add(shelterQueue.poll());
             shelterQueue = sQueue;
         }
@@ -55,17 +57,20 @@ public class Chapter3{
      *  They cannot select which speci c animal they would like. Create the data structures to maintain this system and implement operations such as enqueue, dequeueAny, dequeueDog, and dequeueCat.
      *  You may use the built-in Linked list data structure.
      */
-    public Animal dequeueCat(){
+    public static Animal dequeueCat(){
         Queue sQueue = new PriorityQueue<>();
-        Animal catAdopted;
+        Animal catAdopted = null;
         while(!(shelterQueue.isEmpty())){
             if(catAdopted == null && catAdopted.animalType == "cat")
-                catAdopted = shelterQueue.poll();
+                catAdopted = (Animal) shelterQueue.poll();
             sQueue.add(shelterQueue.poll());
             shelterQueue = sQueue;
         }
         return catAdopted;
-    }   public class Animal{
+    }
+
+    //Animal class  
+    public class Animal{
         String animalType;
         public Animal(String type){
             animalType = type;
@@ -108,4 +113,5 @@ public class Chapter3{
         }
     }
 
-}
+ }
+
